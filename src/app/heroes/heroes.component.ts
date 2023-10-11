@@ -22,13 +22,13 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes()
     .subscribe(heroes => this.heroes = heroes);
   }
-  add(name: string): void {
+  add(name: string, poderes: string): void {
     name = name.trim();
+    poderes = poderes.trim();
     if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-      });
+  
+    const newHero: Hero = { name, poderes } as Hero; // Crea un nuevo objeto Hero con nombre y poderes
+    this.heroes.push(newHero); // Agrega el nuevo héroe a la lista local
   }
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
